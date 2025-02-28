@@ -88,6 +88,7 @@ glm::vec3 g_ball_movement = glm::vec3(0.0f, 0.0f, 0.0f);
 glm::vec3 g_ball_velocity = glm::vec3(2.0f, -0.02f, 0.0f);
 glm::vec3 g_gravity = glm::vec3(0.3f, -0.09f, 0.0f);
 
+
 bool self = false;
 glm::vec3 g_self_velocity = glm::vec3(0.0f, -0.02f, 0.0f);
 
@@ -188,7 +189,7 @@ void process_input()
                 {
                     case SDLK_q: g_app_status = TERMINATED; break;
                         
-                    case SDL_SCANCODE_T:
+                    case SDLK_t:
                         self = !self;
                         break;
                         
@@ -302,8 +303,13 @@ void update()
         std::cout << std::time(nullptr) << ": Left Collision.\n";
     }
     
-    if ((g_ball_position.y + INIT_POS_BALL.y + INIT_SCALE_BALL.y / 2.0f > 3.75f)||(g_ball_position.y + INIT_POS_BALL.y - INIT_SCALE_BALL.y / 2.0f < -3.75f))  {
+    if ((g_ball_position.y + INIT_POS_BALL.y + INIT_SCALE_BALL.y / 2.0f > 3.75f) ||
+        (g_ball_position.y + INIT_POS_BALL.y - INIT_SCALE_BALL.y / 2.0f < -3.75f)) {
+        
+        
         g_ball_velocity.y = -g_ball_velocity.y;
+
+        
         std::cout << std::time(nullptr) << ": Wall Collision.\n";
     }
 
